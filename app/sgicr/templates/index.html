@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!-- ======= Header ======= -->
+{% block Header %}
+{% include 'components/header.html' %}
+{% endblock %}
+<!-- End Header -->
+
+<!-- ======= Sidebar ======= -->
+{% block Sidebar %}
+{% include 'components/sidebar.html' %}
+{% endblock %}
+<!-- ======= End Sidebar ======= -->
+
+
+<!-- ======= Bloque para el contenido del Main ======= -->
+{% block Main %}
+    <main id="main" class="main">
+        <div class="pagetitle">
+        <h1>Sistema de Gestión de Información de Cuadros y Reservas</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'index' %}">Inicio</a></li>
+                <li class="breadcrumb-item active">Inicio</li>
+            </ol>
+        </nav>
+        </div><!-- End Page Title -->
+
+        <section class="section dashboard">
+                        {% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+            {% block section_dashboard %}
+            
+            {% endblock %}
+          <div class="row">
+          </div>
+        </section>
+    </main>
+{% endblock %}
+<!-- ======= End Bloque para el contenido del Main ======= -->
+
+<!-- ======= Inicio del Footer ======= -->
+{% block Footer %}
+{% include 'components/footer.html' %}
+{% endblock %}
+<!-- ======= End Footer ======= -->

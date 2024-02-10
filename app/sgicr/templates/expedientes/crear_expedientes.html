@@ -1,0 +1,174 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block Header %}
+{% include 'components/header.html' %}
+{% endblock %}
+
+{% block Sidebar %}
+{% include 'components/sidebar.html' %}
+{% endblock %}
+
+<!-- ======= Bloque para el contenido del Main ======= -->
+{% block Main %}
+    <main id="main" class="main">
+        <div class="pagetitle">
+        <h1>Sistema de Gestión de Información de Cuadros y Reservas</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'index' %}">Inicio</a></li>
+                <li class="breadcrumb-item">Expedientes</li>
+                <li class="breadcrumb-item active">Nuevo</li>
+            </ol>
+        </nav>
+        </div><!-- End Page Title -->
+
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-10">
+                <div class="col-10 d-flex justify-content-center">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Expediente</h5>
+                            <!-- Bordered Tabs -->
+                            <ul class="nav nav-tabs nav-tabs-bordered" id="borderedTab" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                  <button class="nav-link active" id="personal-tab" data-bs-toggle="tab" data-bs-target="#bordered-personal" type="button" role="tab" aria-controls="personal" aria-selected="true">Datos Personales</button>
+                                </li>
+
+                                <li class="nav-item" role="presentation">
+                                  <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#bordered-profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Profile</button>
+                                </li>
+
+                                <li class="nav-item" role="presentation">
+                                  <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#bordered-contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Contact</button>
+                                </li>
+
+                                <li class="nav-item" role="presentation">
+                                  <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#bordered-contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Contact</button>
+                                </li>
+
+                                <li class="nav-item" role="presentation">
+                                  <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#bordered-contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Contact</button>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content pt-2" id="borderedTabContent">
+                                <div class="tab-pane fade show active" id="bordered-personal" role="tabpanel" aria-labelledby="personal-tab">
+                                    <!-- Formulario crear expediente -->
+                                    <form class="row g-4" method="post" action="{% url 'crear_expedientes' %}">
+                                        <div class="col-md-6">
+                                            <label for="campo_nombre" class="form-label">Nombre</label>
+                                            <input type="text" class="form-control" id="campo_nombre" required>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label for="campo_primer_apellidos" class="form-label">Primer Apellido</label>
+                                            <input type="text" class="form-control" id="campo_primer_apellidos" required>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label for="campo_segundo_apellidos" class="form-label">Segundo Apellido</label>
+                                            <input type="text" class="form-control" id="campo_segundo_apellidos" required>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label for="campo_carnet_identidad" class="form-label">Carnet de Identidad</label>
+                                            <input type="text" class="form-control" id="campo_carnet_identidad" required>
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <label for="campo_sexo" class="form-label">Sexo</label>
+                                            <div class="col-sm-12">
+                                                <select class="form-select" aria-label="Default select example" required>
+                                                    <option selected>Seleccione el sexo</option>
+                                                    <option value="1">Femenino</option>
+                                                    <option value="2">Masculino</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <label for="campo_edad" class="form-label">Edad</label>
+                                            <input type="number" class="form-control" id="campo_edad" required>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label for="campo_fecha" class="form-label">Fecha de nacimiento</label>
+                                            <input type="date" class="form-control" required>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label for="campo_pais" class="form-label">País</label>
+                                            <div class="col-sm-12">
+                                                <select class="form-select" aria-label="Default select example" required>
+                                                    <option selected>País de nacimiento</option>
+                                                    <option value="1">Cuba</option>
+                                                    <option value="2">España</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label for="campo_provincia" class="form-label">Provincia</label>
+                                            <div class="col-sm-12">
+                                                <select class="form-select" aria-label="Default select example" required>
+                                                    <option selected>Provincia de nacimiento</option>
+                                                    <option value="1">Artemisa</option>
+                                                    <option value="2">La Habana</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label for="campo_municipio" class="form-label">Municipio</label>
+                                            <div class="col-sm-12">
+                                                <select class="form-select" aria-label="Default select example" required>
+                                                    <option selected>Municipio de nacimiento</option>
+                                                    <option value="1">Cotorro</option>
+                                                    <option value="2">Cerro</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label for="campo_color_piel" class="form-label">Color de Piel</label>
+                                            <div class="col-sm-12">
+                                                <select class="form-select" aria-label="Default select example" required>
+                                                    <option value="1">Blanca</option>
+                                                    <option value="2">Negra</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="text-center">
+                                            <button type="submit" class="btn btn-primary">Enviar</button>
+                                            <button type="reset" class="btn btn-secondary">Cancelar</button>
+                                        </div>
+                                    </form><!-- Vertical Form -->
+                                </div>
+
+                                <div class="tab-pane fade" id="bordered-profile" role="tabpanel" aria-labelledby="profile-tab">
+                                  odit soluta sunt. Nihil quos omnis animi debitis cumque
+                                </div>
+
+                                <div class="tab-pane fade" id="bordered-contact" role="tabpanel" aria-labelledby="contact-tab">
+                                  Saepe animi et soluta ad odit soluta sunt. Nihil quos omnis animi debitis cumque. Accusantium quibusdam perspiciatis qui qui omnis magnam. Officiis accusamus impedit molestias nostrum veniam. Qui amet ipsum iure. Dignissimos fuga tempore dolor.
+                                </div>
+                            </div><!-- End Bordered Tabs -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    </main>
+{% endblock %}
+<!-- ======= Aqui termina el Bloque para el contenido del Main ======= -->
+
+<!-- ======= Inicio del Footer ======= -->
+{% block Footer %}
+{% include 'components/footer.html' %}
+{% endblock %}
+<!-- ======= End Footer ======= -->

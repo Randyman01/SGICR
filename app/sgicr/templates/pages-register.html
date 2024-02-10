@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+<!-- ======= Sidebar ======= -->
+{% block Sidebar %}
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+      <li class="nav-item">
+        <a class="nav-link " href="index.html">
+          <i class="bi bi-grid"></i>
+          <span>Menu</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="pages-contact.html">
+          <i class="bi bi-envelope"></i>
+          <span>Contacto</span>
+        </a>
+      </li><!-- End Contact Page Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{% url 'registro' %}">
+          <i class="bi bi-card-list"></i>
+          <span>Registro</span>
+        </a>
+      </li><!-- End Register Page Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{% url 'login' %}">
+            <i class="bi bi-box-arrow-in-right"></i>
+            <span>Login</span>
+        </a>
+      </li>
+<!-- End Login Page Nav -->
+    </ul>
+{% endblock %}
+
+<!-- ======= End Sidebar ======= -->
+
+<!-- ======= Bloque Main ======= -->
+{% block Main %}
+      <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+
+              <div class="d-flex justify-content-center py-4">
+                <a href="{% url 'index' %}" class="logo d-flex align-items-center w-auto">
+                  <img src="{% static 'assets/img/logo.png' %}" alt="">
+                  <span class="d-none d-lg-block">SGICR</span>
+                </a>
+              </div><!-- End Logo -->
+
+              <div class="card mb-3">
+
+                <div class="card-body">
+
+                  <div class="pt-4 pb-2">
+                    <h5 class="card-title text-center pb-0 fs-4">Crear una Cuenta</h5>
+                    <p class="text-center small">Ingresa los datos personales para crear una cuenta.</p>
+                  </div>
+
+                  <form class="row g-3 needs-validation" method="post">
+                    <div class="col-12">
+                      <label for="yourName" class="form-label">Nombre</label>
+                      <input type="text" name="name" class="form-control" id="yourName" required>
+                      <div class="invalid-feedback">Please, enter your name!</div>
+                    </div>
+
+                    <div class="col-12">
+                      <label for="yourName" class="form-label">Apellidos</label>
+                      <input type="text" name="name" class="form-control" id="yourName" required>
+                      <div class="invalid-feedback">Please, enter your name!</div>
+                    </div>
+
+                    <div class="col-12">
+                        <label for="yourEmail" class="form-label">Correo</label>
+                            <div class="input-group has-validation">
+                                <span class="input-group-text" id="inputGroupPrepend">@</span>
+                                <input type="email" name="email" class="form-control" id="yourEmail" required>
+                                <div class="invalid-feedback">Please enter a valid Email adddress!</div>
+                            </div>
+                    </div>
+
+                    <div class="col-12">
+                        <label for="yourUsername" class="form-label">Usuario</label>
+                            <input type="text" name="username" class="form-control" id="yourUsername" required>
+                            <div class="invalid-feedback">Please choose a username.</div>
+                    </div>
+
+                    <div class="col-12">
+                      <label for="yourPassword" class="form-label">Contraseña</label>
+                      <input type="password" name="password" class="form-control" id="yourPassword" required>
+                      <div class="invalid-feedback">Please enter your password!</div>
+                    </div>
+
+                    <div class="col-12">
+                      <button class="btn btn-primary w-100" type="submit">Crear Cuenta</button>
+                    </div>
+
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+{% endblock %}
+<!-- ======= End Bloque Main ======= -->
+
+
+

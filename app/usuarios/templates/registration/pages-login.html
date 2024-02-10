@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+
+{% block Header %}
+    <header id="header" class="header fixed-top d-flex align-items-center">
+        <div class="d-flex align-items-center justify-content-between">
+            <a class="logo d-flex align-items-baseline">
+                <img src="{% static 'assets/img/logo.png' %}" alt="">
+                <span class="d-none d-lg-block">SGICR</span>
+            </a>
+        </div><!-- End Logo -->
+
+    </header>
+{% endblock %}
+
+<!-- ======= Bloque para el contenido del Main ======= -->
+{% block Main %}
+    <main>
+        <div class="container">
+            <section
+                    class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+
+                            <div class="d-flex justify-content-center py-4">
+                                <a class="logo d-flex align-items-center w-auto">
+                                    <img src="{% static 'assets/img/logo.png' %}" alt="">
+                                    <span class="d-none d-lg-block">SGICR</span>
+                                </a>
+                            </div><!-- End Logo -->
+                            {% block card_title %}
+
+                                <div class="card mb-3">
+                                    <div class="card-body">
+
+                                        <div class="pt-4 pb-2">
+                                            <h5 class="card-title text-center pb-0 fs-4">Ingrese a su cuenta</h5>
+                                            <p class="text-center small">Ingrese su nombre de usuario y contraseña para
+                                                iniciar sesión</p>
+                                        </div>
+
+                                        <form class="row g-3 needs-validation" method="post">
+                                            {% csrf_token %}
+                                            <div class="form-group">
+                                                {{ form.username.label_tag }}
+                                                {{ form.username|add_class:"form-control"|attr:"placeholder:Nombre de usuario" }}
+                                            </div>
+                                            <div class="form-group">
+                                                {{ form.password.label_tag }}
+                                                {{ form.password|add_class:"form-control"|attr:"placeholder:Contraseña" }}
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+
+                                 
+
+                                        </form>
+                                    </div>
+                                </div>
+                            {% endblock %}
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+{% endblock %}
+<!-- ======= Aqui termina el Bloque para el contenido del Main ======= -->
+
