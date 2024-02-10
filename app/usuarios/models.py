@@ -5,6 +5,7 @@ from django.core.exceptions import ValidationError
 
 
 class CustomUserManager(BaseUserManager):
+    #camkdsnfkdngkdfng
 
     def create_user(self,  ci, first_name, last_name, password=None, email=None, **extra_fields):
         if not ci or len(ci) != 11:
