@@ -6,136 +6,6 @@ from django.dispatch import receiver
 import re
 
 # Create your models here.
-# ======= Modelos para las validaciones de los campos ==============
- 
-
-# def validate_nombre(value):
-#     if not re.match("^[A-Z][a-z]{0,9}$", value):
-#         raise ValidationError(
-#             'La primera letra debe ser mayuscula',
-#             params={'value': value},
-#         )
-#
-#
-# def validate_usuario(value):
-#     if len(value) < 3:
-#         raise ValidationError('El usuario debe tener al menos 3 caracteres')
-#
-#     if not re.match("^[a-zA-Z][a-zA-Z0-9]{0,9}$", value):
-#         raise ValidationError(
-#             'El usuario debe comenzar con letra mayuscula, no contener caracteres especiales, y tener un máximo de 10 '
-#             'caracteres',
-#             params={'value': value},
-#         )
-#
-#     existing_user = User.objects.filter(username=value).exists()
-#     if existing_user:
-#         raise ValidationError('El nombre de usuario ya está en uso')
-#
-#
-# def validate_contrasena(value):
-#     if len(value) < 8:
-#         raise ValidationError('La contraseña debe tener al menos 8 caracteres')
-#
-#
-# def validate_carnet_identidad(value):
-#     if not re.match("^[0-9]{11}$", value):
-#         raise ValidationError('El carnet de identidad debe contener exactamente 11 dígitos')
-
-
-# ============== Modelo para crear usuarios. ==============
-# class Usuario(models.Model):
-#     user = models.OneToOneField(User, on_delete=models.CASCADE)
-#     nombre = models.CharField(max_length=10, validators=[validate_nombre])
-#     primer_apellido = models.CharField(max_length=10, validators=[validate_nombre])
-#     segundo_apellido = models.CharField(max_length=10, validators=[validate_nombre])
-#     carnet_identidad = models.CharField(max_length=11, default='00000000000')
-#     usuario = models.CharField(max_length=10, unique=True, validators=[validate_usuario])
-#     password = models.CharField(max_length=100)
-#     confirmar_password = models.CharField(max_length=100)
-#     ROLES = [
-#         ('1', 'Administrador'),
-#         ('2', 'Especialista'),
-#
-#     ]
-#     rol = models.CharField(max_length=1, choices=ROLES)
-#
-#     def clean(self):
-#         if self.password != self.confirmar_password:
-#             raise ValidationError('Las contraseñas no coinciden')
-#
-#     def save(self, *args, **kwargs):
-#         self.full_clean()  # Realizar la validación al guardar el objeto Usuario
-#         super(Usuario, self).save(*args, **kwargs)
-
-# ============== End Modelo para crear usuarios. ==============
-
-
-# ======================================================================================================================
-# ==================================Modelos para los Nomencladores======================================================
-# ======================================================================================================================
-
-
-def validate_nombre(value):
-    if not re.match("^[A-Z][a-z]{0,9}$", value):
-        raise ValidationError(
-            'La primera letra debe ser mayuscula',
-            params={'value': value},
-        )
-
-
-def validate_usuario(value):
-    if len(value) < 3:
-        raise ValidationError('El usuario debe tener al menos 3 caracteres')
-
-    if not re.match("^[a-zA-Z][a-zA-Z0-9]{0,9}$", value):
-        raise ValidationError(
-            'El usuario debe comenzar con letra mayuscula, no contener caracteres especiales, y tener un máximo de 10 '
-            'caracteres',
-            params={'value': value},
-        )
-
-    existing_user = User.objects.filter(username=value).exists()
-    if existing_user:
-        raise ValidationError('El nombre de usuario ya está en uso')
-
-
-def validate_contrasena(value):
-    if len(value) < 8:
-        raise ValidationError('La contraseña debe tener al menos 8 caracteres')
-
-
-def validate_carnet_identidad(value):
-    if not re.match("^[0-9]{11}$", value):
-        raise ValidationError('El carnet de identidad debe contener exactamente 11 dígitos')
-
-
-# ============== Modelo para crear usuarios. ==============
-class Usuario(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    nombre = models.CharField(max_length=10, validators=[validate_nombre])
-    primer_apellido = models.CharField(max_length=10, validators=[validate_nombre])
-    segundo_apellido = models.CharField(max_length=10, validators=[validate_nombre])
-    carnet_identidad = models.CharField(max_length=11, default='00000000000')
-    usuario = models.CharField(max_length=10, unique=True, validators=[validate_usuario])
-    password = models.CharField(max_length=100)
-    confirmar_password = models.CharField(max_length=100)
-    ROLES = [
-        ('1', 'Administrador'),
-        ('2', 'Especialista'),
-       
-    ]
-    rol = models.CharField(max_length=1, choices=ROLES)
-
-    def clean(self):
-        if self.password != self.confirmar_password:
-            raise ValidationError('Las contraseñas no coinciden')
-
-    def save(self, *args, **kwargs):
-        self.full_clean()  # Realizar la validación al guardar el objeto Usuario
-        super(Usuario, self).save(*args, **kwargs)
-
-# ============== End Modelo para crear usuarios. ==============
 
 
 
@@ -397,7 +267,7 @@ class NomPais(models.Model):
     def __str__(self): 
         return self.denominacion
 
-        return self.id
+
 
 
 
@@ -409,12 +279,7 @@ class NomProvincia(models.Model):
         return str(self.denominacion)
 
 
-class NomMunicipio(models.Model):
-    id_provincia = models.ForeignKey(NomProvincia, on_delete=models.CASCADE)
-    denominacion = models.CharField(max_length=50, blank=True, null=True)
 
-    def __str__(self):
-        return str(self.denominacion)
 
 
 
@@ -752,8 +617,11 @@ class DatosFamiliares (models.Model):
 #=======================================================================================================================
 
 class NomCatCientifica:
-    pass
+    denominacion = models.CharField(max_length=30, blank=True, null=True)
+    activo = models.BooleanField(default=True)
 
 
 class NomCausaBaja:
-    pass
+    denominacion = models.CharField(max_length=30, blank=True, null=True)
+    activo = models.BooleanField(default=True)
+

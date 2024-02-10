@@ -51,15 +51,15 @@ class NomAsignacionAdmin(admin.ModelAdmin):
     list_display = ('denominacion', 'activo')
 
 
-@admin.register(NomCatCientifica)
-class nomCatCientificaAdmin(admin.ModelAdmin):
-    list_display = ('denominacion', 'activo')\
+# @admin.register(NomCatCientifica)
+# class nomCatCientificaAdmin(admin.ModelAdmin):
+#     list_display = ('denominacion', 'activo')\
 
 
 
-@admin.register(NomCausaBaja)
-class nomCausaBajaAdmin(admin.ModelAdmin):
-    list_display = ('denominacion', 'activo')
+# @admin.register(NomCausaBaja)
+# class nomCausaBajaAdmin(admin.ModelAdmin):
+#     list_display = ('denominacion', 'activo')
 
 
 @admin.register(NomCausaMovimiento)
@@ -245,30 +245,30 @@ class IntegracionRevolucionariaAdmin(admin.ModelAdmin):
 
 
 
-@admin.register(NomPais)
-class NomPaisAdmin(admin.ModelAdmin):
-    list_display = ('id', 'denominacion')
+# @admin.register(NomPais)
+# class NomPaisAdmin(admin.ModelAdmin):
+#     list_display = ('id', 'denominacion')
 
 
-@admin.register(NomProvincia)
-class NomProvinciaAdmin(admin.ModelAdmin):
-    list_display = ('id', 'denominacion', 'id_pais_id')
-    search_fields = ('denominacion',)
+# @admin.register(NomProvincia)
+# class NomProvinciaAdmin(admin.ModelAdmin):
+#     list_display = ('id', 'denominacion', 'id_pais_id')
+#     search_fields = ('denominacion',)
 
 
-@admin.register(NomMunicipio)
-class NomMunicipioAdmin(admin.ModelAdmin):
-    list_display = ('id_provincia', 'denominacion')
+# @admin.register(NomMunicipio)
+# class NomMunicipioAdmin(admin.ModelAdmin):
+#     list_display = ('id_provincia', 'denominacion')
 
 
-@admin.register(NomReparto)
-class NomRepartoAdmin(admin.ModelAdmin):
-    list_display = ('id_municipio', 'denominacion')
+# @admin.register(NomReparto)
+# class NomRepartoAdmin(admin.ModelAdmin):
+#     list_display = ('id_municipio', 'denominacion')
 
 
-@admin.register(IntegracionRevolucionaria)
-class IntegracionRevolucionariaAdmin(admin.ModelAdmin):
-    list_display = ('integracion', 'cdr')
+# @admin.register(IntegracionRevolucionaria)
+# class IntegracionRevolucionariaAdmin(admin.ModelAdmin):
+#     list_display = ('integracion', 'cdr')
 
 
 # @admin.register(EspecialidadPersona)
