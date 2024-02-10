@@ -6,6 +6,13 @@ from django.core.exceptions import ValidationError
 
 class CustomUserManager(BaseUserManager):
     # shahdahgdahc
+    # shahdahgdahc
+    # shahdahgdahc
+    # shahdahgdahc
+    # shahdahgdahc
+    # shahdahgdahc
+    # shahdahgdahc
+
     def create_user(self,  ci, first_name, last_name, password=None, email=None, **extra_fields):
         if not ci or len(ci) != 11:
             raise ValueError('El carnet de identidad debe tener exactamente 11 dígitos')
