@@ -7,10 +7,11 @@
     <nav>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{% url 'index' %}">Inicio</a></li>
-            <li class="breadcrumb-item active">Modificar Usuario</li>
+            <li class="breadcrumb-item active">Eliminar Usuario</li>
         </ol>
     </nav>
 {% endblock %}
+
 
 <!-- ======= Bloque para el contenido del Main ======= -->
 {% block Main_section_dashboard %}
@@ -19,7 +20,7 @@
             <div class="card-body">
                 <h5 class="card-title">
                     {% block card-title %}
-                        Cambiar Contraseña
+                        ¿Está seguro que quiere eliminar al usuario?
                     {% endblock %}
                 </h5>
 
@@ -37,9 +38,3 @@
     </div>
 {% endblock %}
 <!-- ======= Aqui termina el Bloque para el contenido del Main ======= -->
-
-<!-- ======= Inicio del Footer ======= -->
-{% block Footer %}
-    {% include 'components/footer.html' %}
-{% endblock %}
-<!-- ======= End Footer ======= -->

@@ -1,19 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.core.exceptions import ValidationError
-from django.db.models.signals import post_migrate, post_save
-from django.dispatch import receiver
-import re
-
-# Create your models here.
-
 
 
 # ======================================================================================================================
 # ==================================Modelos para los Nomencladores======================================================
 # ======================================================================================================================
- 
-
 
 
 class NomAsignacion(models.Model):
@@ -21,16 +12,10 @@ class NomAsignacion(models.Model):
     activo = models.BooleanField(default=True)
 
 
-
- 
-
 class NomCatDocente(models.Model):
 
     denominacion = models.CharField(max_length=30, blank=True, null=True)
     activo = models.BooleanField(default=True)
-
- 
-
 
 
 class NomCausaMovimiento (models.Model):
@@ -48,8 +33,10 @@ class NomCondecoracion (models.Model):
     denominacion = models.CharField(max_length=50, blank=True, null=True)
     activo = models.BooleanField(default=True)
 
-
+# ======================================================================================================================
 # ============================== Nomencladores asociados a los Cursos ==================================================
+# ======================================================================================================================
+
 
 class TipoEstudios(models.Model):
     pregrado = models.BooleanField(default=False)
@@ -57,7 +44,6 @@ class TipoEstudios(models.Model):
     politicos = models.BooleanField(default=False)
     militares = models.BooleanField(default=False)
     activo = models.BooleanField(default=True)
-
 
     def __str__(self):
         tipos = []
@@ -91,9 +77,10 @@ class NomCursoesp (models.Model):  # este seria el de otros estudios
     denominacion = models.CharField(max_length=50, blank=True, null=True)
     activo = models.BooleanField(default=True)
 
- 
-# ============================== End de Nomencladores asociados a los Cursos ===========================================
 
+# ======================================================================================================================
+# ============================== End de Nomencladores asociados a los Cursos ===========================================
+# ======================================================================================================================
 
 class NomGrupoescolar(models.Model):
     idgrupoescolar = models.PositiveSmallIntegerField(primary_key=True)
@@ -109,13 +96,13 @@ class NomEspecialidadpersona(models.Model):
     activo = models.BooleanField(default=True)
     idgrupoescolar = models.ForeignKey(NomGrupoescolar, on_delete=models.PROTECT, related_name='especialidades', blank=True, null=True)
 
-
     def __str__(self):
         return self.denominacion if self.denominacion else 'Sin denominación'
 
 
-
+# ======================================================================================================================
 # ===================================== Nomencladores asociados a la Salud =============================================
+# ======================================================================================================================
 
 class NomEstsalud (models.Model):
     denominacion = models.CharField(max_length=50, blank=True, null=True)
@@ -131,13 +118,13 @@ class NomPadecimiento (models.Model):
     denominacion = models.CharField(max_length=50, blank=True, null=True)
     activo = models.BooleanField(default=True)
 
-
+# ======================================================================================================================
 # ============================== End de Nomencladores asociados a a la Salud ===========================================
+# ======================================================================================================================
 
 class NomExtrasocial (models.Model):
     denominacion = models.CharField(max_length=50, blank=True, null=True)
     activo = models.BooleanField(default=True)
-
 
 
 class NomGradoCientifico (models.Model):
@@ -152,10 +139,9 @@ class NomIdioma (models.Model):
     denominacion = models.CharField(max_length=50, blank=True, null=True)
     activo = models.BooleanField(default=True)
 
-
+# ======================================================================================================================
 # ========================= Nomencladores asociados a Armas y vehiculos ================================================
-
-
+# ======================================================================================================================
 
 
 class NomMarca (models.Model):
@@ -176,8 +162,10 @@ class NomTipomedio(models.Model):
     denominacion = models.CharField(max_length=50, blank=True, null=True)
     activo = models.BooleanField(default=True)
 
-# =============================== End Nomencladores asociados a Armas y vehiculos ======================================
 
+# ======================================================================================================================
+# =============================== End Nomencladores asociados a Armas y vehiculos ======================================
+# ======================================================================================================================
 
 class NomMilitancia (models.Model):
     denominacion_larga = models.CharField(max_length=30, blank=True, null=True)
@@ -213,8 +201,11 @@ class NomSalida (models.Model):
     denominacion = models.CharField(max_length=50, blank=True, null=True)
     activo = models.BooleanField(default=True)
 
+# ======================================================================================================================
+# ================================Nomencladores para las Sanciones======================================================
+# ======================================================================================================================
 
-# ====================Nomencladores para las Sanciones====================================
+
 class nomTipoSancion (models.Model):
     denominacion = models.CharField(max_length=250)
     activo = models.BooleanField(default=True)
@@ -225,8 +216,9 @@ class nomSancion (models.Model):
     activo = models.BooleanField(default=True)
     tipo = models.ForeignKey(nomTipoSancion, on_delete=models.PROTECT)
 
-
-#====================End Nomenclador para Sancion================================================================
+# ======================================================================================================================
+# ==========================End Nomenclador para Sancion================================================================
+# ======================================================================================================================
 
 
 class NomTipoCondecoracion(models.Model):
@@ -267,8 +259,9 @@ class NomPais(models.Model):
     def __str__(self): 
         return self.denominacion
 
-
-
+# ======================================================================================================================
+# ==================================Nomencladores asociados a Direcciones===============================================
+# ======================================================================================================================
 
 
 class NomProvincia(models.Model):
@@ -279,15 +272,10 @@ class NomProvincia(models.Model):
         return str(self.denominacion)
 
 
-
-
-
-
 class NomMunicipio(models.Model):
     id_provincia = models.ForeignKey(NomProvincia, on_delete=models.CASCADE)
     id_municipio = models.IntegerField(default=1)
     denominacion = models.CharField(max_length=50, blank=True, null=True)
-
 
 
 class NomReparto(models.Model):
@@ -298,24 +286,30 @@ class NomReparto(models.Model):
         return str(self.denominacion)
 
 
+# ======================================================================================================================
+# ================================== End Nomencladores asociados a Direcciones==========================================
+# ======================================================================================================================
+
 class NomEstimulo(models.Model):
     denominacion = models.CharField(blank=True, null=True)
 
 
+# ======================================================================================================================
+# ============================ End Nomencladores sacados con inspectdb.=================================================
+# ======================================================================================================================
+# ================================== End Modelo para Nomencladores. ====================================================
 
-#=======================================================================================================================
-# ============================ End Nomencladores sacados con inspectdb.======================================================
-#=======================================================================================================================
 
-# ============== End Modelo para Nomencladores. ==============
+# ======================================================================================================================
+# ===================================== Modelo para Expediente. ========================================================
+# ======================================================================================================================
 
-# ============== Modelo para Expediente. ==============#
 class Persona (models.Model):
     ci= models.BigIntegerField(unique=True)
     nombre= models.CharField(max_length=250)
     primer_apellido= models.CharField(max_length=250)
     segundo_apellido= models.CharField(max_length=250)
-    foto= models.ImageField(upload_to='img_expediente', blank=True, null=True)   #configurar los archivos media y static en el settings
+    foto= models.ImageField(upload_to='img_expediente', blank=True, null=True)   # configurar los archivos media y static en el settings
 
     def __str__(self):
         return f'{self.ci}'+ " "+ self.nombre
@@ -397,9 +391,9 @@ class DatosPersonales (models.Model):
 
     correo = models.EmailField(null=True, blank=True)
 
-#=======================================================================================================================
-#======================================== Modelo Integracion Revolucionaria ============================================
-#=======================================================================================================================
+# ======================================================================================================================
+# ======================================= Modelo Integracion Revolucionaria ============================================
+# ======================================================================================================================
 class IntegracionRevolucionaria (models.Model):
     persona = models.ForeignKey(Persona, on_delete=models.PROTECT, related_name='integraciones_revolucionarias')
     integracion = models.CharField(max_length=50)
@@ -425,15 +419,15 @@ class OrganismoIntegracion (models.Model):
     fecha_desde = models.DateField(blank=True, null=True)
     fecha_hasta = models.DateField(blank=True, null=True)
 
-#=======================================================================================================================
-#==================================== End Modelo Integracion Revolucionaria ============================================
-#=======================================================================================================================
+# ======================================================================================================================
+# =================================== End Modelo Integracion Revolucionaria ============================================
+# ======================================================================================================================
 
 
 
-#=======================================================================================================================
-#==================================== Modelo Especialidades e Idiomas ==================================================
-#=======================================================================================================================
+# ======================================================================================================================
+# =================================== Modelo Especialidades e Idiomas ==================================================
+# ======================================================================================================================
 class EspecialidadPersona (models.Model):
     persona = models.ForeignKey(Persona, on_delete=models.PROTECT)
     especialidad = models.ForeignKey(NomEspecialidadpersona, on_delete=models.PROTECT)
@@ -447,14 +441,14 @@ class IdiomaPersona (models.Model):
     idioma = models.ForeignKey(NomIdioma, on_delete=models.PROTECT)
 
 
-#=======================================================================================================================
-#==================================== End Modelo Especialidades e Idiomas ==============================================
-#=======================================================================================================================
+# ======================================================================================================================
+# =================================== End Modelo Especialidades e Idiomas ==============================================
+# ======================================================================================================================
 
 
-#=======================================================================================================================
+# ======================================================================================================================
 # ========================================= Modelos para Estado de Salud. ==============================================
-#=======================================================================================================================
+# ======================================================================================================================
 
 class EstadoSalud (models.Model):
     persona = models.ForeignKey(Persona, on_delete=models.PROTECT)
@@ -611,10 +605,23 @@ class DatosFamiliares (models.Model):
 # ======================================================================================================================
 # ========================================== Modelo BeneficiosMonetarios ===============================================
 # ======================================================================================================================
-# class BeneficiosMonetarios (models.Model):
+class BeneficiosMonetariosPropios (models.Model):
+#    persona = models.ForeignKey(Persona, on_delete=models.PROTECT)
+    tipo_ingreso = models.ForeignKey(NomTipoingreso, on_delete=models.PROTECT)
+    tipo_modeda = models.ForeignKey(NomTipomoneda, on_delete=models.PROTECT)
+    cuantia = models.PositiveIntegerField(blank=True, null=True)
 
+
+class BeneficiosMonetariosFamiliares (models.Model):
+#    persona = models.ForeignKey(Persona, on_delete=models.PROTECT)
+    parentesco = models.ForeignKey(NomParentesco, on_delete=models.PROTECT)
+    tipo_ingreso = models.ForeignKey(NomTipoingreso, on_delete=models.PROTECT)
+    tipo_modeda = models.ForeignKey(NomTipomoneda, on_delete=models.PROTECT)
+
+
+# ======================================================================================================================
 # ====================================== Modelo para Trayectoria Laboral. ==============================================
-#=======================================================================================================================
+# ======================================================================================================================
 
 class NomCatCientifica:
     denominacion = models.CharField(max_length=30, blank=True, null=True)

@@ -1,11 +1,9 @@
 from django.urls import path
-from app.sgicr.views import Inicio #, user_logout, user_login
+from app.sgicr.views import Inicio
 from . import views
 
 urlpatterns = [
     path('', Inicio.as_view(), name='index'),
-    # path('login/', user_login, name='login'),
-    # path('logout/', user_logout, name='logout'),
 
 
 #   <!-- ======= Urls Vistas de Usuario ======= -->

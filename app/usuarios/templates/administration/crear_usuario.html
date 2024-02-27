@@ -1,64 +1,51 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load django_bootstrap5 %}
-
 {% load widget_tweaks %}
 
 {% block Header %}
-{% include 'components/header.html' %}
+    {% include 'components/header.html' %}
 {% endblock %}
 
 {% block Sidebar %}
-{% include 'components/sidebar.html' %}
+    {% include 'components/sidebar.html' %}
 {% endblock %}
 
 <!-- ======= Bloque para el contenido del Main ======= -->
-{% block Main %}
-    <main id="main" class="main">
-        <div class="pagetitle">
-        <h1>Sistema de Gestión de Información de Cuadros y Reservas</h1>
-        <nav>
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{% url 'index' %}">Inicio</a></li>
-                <li class="breadcrumb-item">Usuarios</li>
-                <li class="breadcrumb-item active">Nuevo</li>
-            </ol>
-        </nav>
-        </div><!-- End Page Title -->
-
-    <section class="section">
-
-            <div class="col-7 d-flex justify-content-center">
-
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">{% block card-title %}
-                        Crear usuario
-                        {% endblock %}</h5>
-
-
-
-
-{% block card-body %}
-  <form method="post">
-        {% csrf_token %}
-       {% bootstrap_form form %}
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-
+{% block Pagetitle %}
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'index' %}">Inicio</a></li>
+            <li class="breadcrumb-item active">Registrar usuario</li>
+        </ol>
+    </nav>
 {% endblock %}
+<!-- End Page Title -->
 
-                    </div>
-                </div>
+
+{% block Main_section_dashboard %}
+
+    <div class="col-8 d-flex justify-content-center">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">
+                    {% block card-title %}
+                        Registrar usuario
+                    {% endblock %}
+                </h5>
+
+                {% block card-body %}
+                    <form method="post">
+                        {% csrf_token %}
+                        {% bootstrap_form form %}
+                        <button type="submit" class="btn btn-primary">Añadir</button>
+                        <a href="{% url 'custom_user_list' %}" class="btn btn-primary" id="cancel-button">Cancelar
+                            Cambios</a>
+                    </form>
+                {% endblock %}
             </div>
+        </div>
+    </div>
 
-    </section>
-    </main>
 {% endblock %}
 <!-- ======= Aqui termina el Bloque para el contenido del Main ======= -->
-
-<!-- ======= Inicio del Footer ======= -->
-{% block Footer %}
-{% include 'components/footer.html' %}
-{% endblock %}
-<!-- ======= End Footer ======= -->

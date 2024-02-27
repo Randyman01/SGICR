@@ -11,6 +11,12 @@ class CustomUserManager(BaseUserManager):
         if not ci or len(ci) != 11:
             raise ValueError('El carnet de identidad debe tener exactamente 11 dígitos')
 
+        # Solicitar confirmación de contraseña
+        confirm_password = input("Por favor, confirme la contraseña: ")
+
+        if password != confirm_password:
+            raise ValueError('Las contraseñas no coinciden. Inténtelo de nuevo.')
+
         user = self.model(ci=ci, first_name=first_name, last_name=last_name, email=email, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
@@ -19,6 +25,12 @@ class CustomUserManager(BaseUserManager):
     def create_superuser(self, ci, password=None,  email=None, **extra_fields):
         extra_fields.setdefault('is_staff', True)
         extra_fields.setdefault('is_superuser', True)
+
+        # Solicitar confirmación de contraseña
+        confirm_password = input("Por favor, confirme la contraseña del superusuario: ")
+
+        if password != confirm_password:
+            raise ValueError('Las contraseñas no coinciden. Inténtelo de nuevo.')
 
         return self.create_user(ci=ci, first_name='', last_name='', password=password, **extra_fields)
 
@@ -38,6 +50,12 @@ class CustomUser (AbstractUser):
         if not ci or len(ci) != 11:
             raise ValueError('El carnet de identidad debe tener exactamente 11 dígitos')
 
+        # Solicitar confirmación de contraseña
+        confirm_password = input("Por favor, confirme la contraseña: ")
+
+        if password != confirm_password:
+            raise ValueError('Las contraseñas no coinciden. Inténtelo de nuevo.')
+
         user = self.model(ci=ci, first_name=first_name, last_name=last_name, email=email, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
@@ -52,3 +70,14 @@ class CustomUser (AbstractUser):
         super().clean()
         if CustomUser.objects.exclude(pk=self.pk).filter(email=self.email).exists()  and self.email :
             raise ValidationError('El email debe ser único')
+
+
+# Modelo para el datatable
+# class ListUsers(models.Model):
+#      = models.CharField(max_length=50)
+#     country = models.CharField(max_length=3)
+#     birthday = models.DateField()
+#     score = models.PositiveSmallIntegerField()
+#
+#     class Meta:
+#         db_table = 'programmer'

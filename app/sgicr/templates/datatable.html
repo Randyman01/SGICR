@@ -1,0 +1,98 @@
+{% block Main_section_dashboard %}
+    {% block card-body %}
+        <h3>Lista de usuarios</h3>
+
+
+        <ul class="nav nav-tabs nav-tabs-bordered" id="borderedTab" role="tablist">
+            <a href="{% url 'register' %}">
+                <li class="nav-item" role="presentation">
+                    <button
+                            class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#bordered-home"
+                            type="button" role="tab" aria-controls="home" aria-selected="true">Añadir
+                        <i class="bi bi-person-add"></i>
+                    </button>
+                </li>
+            </a>
+        </ul>
+
+    {% endblock %}
+
+    {% block DataTable %}
+
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                    <div class="table-responsive">
+                        <div class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">
+                            <div class="datatable-top">
+                                <div class="datatable-dropdown">
+                                    <label>
+                                        <select class="datatable-selector">
+                                            <option value="5">5</option>
+                                            <option value="10" selected="">10</option>
+                                            <option value="15">15</option>
+                                            <option value="20">20</option>
+                                            <option value="25">25</option>
+                                        </select> entradas por página
+                                    </label>
+                                </div>
+
+                                <div class="datatable-search">
+                                    <input class="datatable-input" placeholder="Buscar..." type="search"
+                                           title="Buscar dentro de la tabla">
+                                </div>
+                            </div>
+
+                            <table id="userTable" class="table datatable datatable-table" style="width:100%">
+                                <thead>
+                                <tr>
+                                    <th data-sortable="true"><a class="datatable-sorter">#</a></th>
+                                    <th data-sortable="true"><a class="datatable-sorter">Usuario</a></th>
+                                    <th data-sortable="true"><a class="datatable-sorter"># Carnet Identidad</a></th>
+                                    <th data-sortable="true"><a class="datatable-sorter">Nombre</a></th>
+                                    <th data-sortable="true"><a class="datatable-sorter">Apellidos</a></th>
+                                    <th data-sortable="true"><a class="datatable-sorter">Último inicio de sesión</a>
+                                    </th>
+                                    <th data-sortable="true"><a class="datatable-sorter">Correo</a></th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                {% if users %}
+                                    {% for user in users %}
+                                        <td>{{ user.id }}</td>
+                                        <td>{{ user.username }}</td>
+                                        <td>{{ user.ci }}</td>
+                                        <td>{{ user.first_name }}</td>
+                                        <td>{{ user.last_name }}</td>
+                                        <td>{{ user.last_login }}</td>
+                                        <td>{{ user.email }}</td>
+                                        <td>
+                                            <a href="{% url 'modificar_usuario' user.id %}" class="edit-btn"><i
+                                                    class="bi bi-pencil-square"></i></a>
+                                            <a href="{% url 'eliminar_usuario' user.id %}" class="delete-btn"><i
+                                                    class="bi bi-trash3-fill bg-danger"></i></a>
+                                        </td>
+                                        </tr>
+                                    {% empty %}
+                                        <tr>
+                                            <td colspan="5">No hay usuarios registrados.</td>
+                                        </tr>
+                                    {% endfor %}
+                                {% endif %}
+                                </tbody>
+                            </table>
+
+                            <div class="datatable-bottom">
+                                <div class="datatable-info">Mostrando del 1 al 5 de 5 entradas</div>
+                                <nav class="datatable-pagination">
+                                    <ul class="datatable-pagination-list"></ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+{% endblock %}

@@ -1,110 +1,120 @@
-    <main id="main" class="main">
-        <div class="pagetitle">
-            <h1>Form Elements</h1>
-        <nav>
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                <li class="breadcrumb-item">Forms</li>
-                <li class="breadcrumb-item active">Elements</li>
-            </ol>
-        </nav>
-        </div><!-- End Page Title -->
+{% extends 'administration/crear_usuario.html' %}
 
-        <section class="section">
-            <div class="row">
-                <div class="col-lg-6">
+{% block Pagetitle %}
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'index' %}">Inicio</a></li>
+                    <li class="breadcrumb-item active">Listado de Usuarios</li>
+                </ol>
+            </nav>
+{% endblock %}
 
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">General Form Elements</h5>
 
-                            <!-- General Form Elements -->
-                        <form>
-                            <div class="row mb-3">
-                                <label for="inputText" class="col-sm-2 col-form-label">Text</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control">
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                              <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
-                              <div class="col-sm-10">
-                                <input type="email" class="form-control">
-                              </div>
-                            </div>
-
-                            <div class="row mb-3">
-                              <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
-                              <div class="col-sm-10">
-                                <input type="password" class="form-control">
-                              </div>
-                            </div>
-
-                            <div class="row mb-3">
-                              <label for="inputNumber" class="col-sm-2 col-form-label">Number</label>
-                              <div class="col-sm-10">
-                                <input type="number" class="form-control">
-                              </div>
-                            </div>
-
-                            <div class="row mb-3">
-                              <label for="inputNumber" class="col-sm-2 col-form-label">File Upload</label>
-                              <div class="col-sm-10">
-                                <input class="form-control" type="file" id="formFile">
-                              </div>
-                            </div>
-
-                            <div class="row mb-3">
-                              <label for="inputDate" class="col-sm-2 col-form-label">Date</label>
-                              <div class="col-sm-10">
-                                <input type="date" class="form-control">
-                              </div>
-                            </div>
-                            <div class="row mb-3">
-                              <label for="inputTime" class="col-sm-2 col-form-label">Time</label>
-                              <div class="col-sm-10">
-                                <input type="time" class="form-control">
-                              </div>
-                            </div>
-
-                            <div class="row mb-3">
-                              <label for="inputColor" class="col-sm-2 col-form-label">Color Picker</label>
-                              <div class="col-sm-10">
-                                <input type="color" class="form-control form-control-color" id="exampleColorInput" value="#4154f1" title="Choose your color">
-                              </div>
-                            </div>
-
-                            <div class="row mb-3">
-                              <label for="inputPassword" class="col-sm-2 col-form-label">Textarea</label>
-                              <div class="col-sm-10">
-                                <textarea class="form-control" style="height: 100px"></textarea>
-                              </div>
-                            </div>
-
-                            <div class="row mb-3">
-                              <label class="col-sm-2 col-form-label">Select</label>
-                              <div class="col-sm-10">
-                                <select class="form-select" aria-label="Default select example">
-                                  <option selected>Open this select menu</option>
-                                  <option value="1">One</option>
-                                  <option value="2">Two</option>
-                                  <option value="3">Three</option>
-                                </select>
-                              </div>
-                            </div>
-
-                            <div class="row mb-3">
-                              <label class="col-sm-2 col-form-label">Submit Button</label>
-                              <div class="col-sm-10">
-                                <button type="submit" class="btn btn-primary">Submit Form</button>
-                              </div>
-                            </div>
-                        </form><!-- End General Form Elements -->
-                    </div>
-                  </div>
+{% block Main_section_dashboard %}
+    {% block card-body %}
+    <a  href="{% url 'register' %}">
+        <i class="bi bi-person-add"></i><span>Añadir</span>
+    </a>
+    <h1>Lista de usuarios</h1>
+        <div class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">
+            <div class="datatable-top">
+                <div class="datatable-dropdown">
+                    <label>
+                        <select class="datatable-selector"><option value="5">5</option>
+				            <option value="10" selected="">10</option>
+				            <option value="15">15</option>
+				            <option value="20">20</option>
+				            <option value="25">25</option>
+				        </select> entries per page
+                    </label>
                 </div>
+                <div class="datatable-search">
+                <input class="datatable-input" placeholder="Search..." type="search" title="Search within table">
             </div>
-        </section>
+            </div>
+        <div class="datatable-container">
+            <table id="userTable" class="table datatable datatable-table">
+                <thead>
+                <tr>
+                    <th data-sortable="true" style="width: 5.705059203444564%;"><a href="#" class="datatable-sorter">#</a></th>
+                    <th data-sortable="true" style="width: 27.98708288482239%;"><a href="#" class="datatable-sorter">CI</a></th>
+                    <th data-sortable="true" style="width: 37.78256189451022%;"><a href="#" class="datatable-sorter">Nombre de usuario</a></th>
+                    <th data-sortable="true" style="width: 9.257265877287406%;"><a href="#" class="datatable-sorter">Email</a></th>
+                    <th data-sortable="true" style="width: 19.268030139935412%;"><a href="#" class="datatable-sorter">Último inicio de sesión</a></th>
+                </tr>
+                </thead>
+{#                    <th scope="col">CI</th>#}
+{#                    <th scope="col">Nombre de usuario</th>#}
+{#                    <th scope="col">Email</th>#}
+{#                    <th scope="col">Último inicio de sesión</th>#}
+{#                    <th scope="col">Staff</th>#}
+                <tbody>
+                    {% for user in users %}
+                        <tr data-index="0"><td>1</td>>
+                        <td>{{ user.ci }}</td>
+                        <td>{{ user.username }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.last_login }}</td>
+                        <td>
+                            <a href="#" class="edit-btn"><i class="bi bi-pencil-square"></i></a>
+                            <a href="#" class="delete-btn"><i class="bi bi-trash3-fill bg-danger"></i></a>
+                        </td>
+                        </tr>
+                        {% empty %}
+                        <tr><td colspan="5">No hay usuarios registrados.</td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endblock %}
+{% endblock %}
 
-    </main>
+
+{#datatable hecha por mi#}
+<div class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">
+            <div class="datatable-top">
+                <div class="datatable-dropdown">
+                    <label>
+                        <select class="datatable-selector"><option value="5">5</option>
+				            <option value="10" selected="">10</option>
+				            <option value="15">15</option>
+				            <option value="20">20</option>
+				            <option value="25">25</option>
+				        </select> entries per page
+            </label>
+        </div>
+    <div class="datatable-search">
+            <input class="datatable-input" placeholder="Search..." type="search" title="Search within table">
+        </div>
+</div>
+<div class="datatable-container">
+    <table id="userTable" class="table datatable">
+        <thead>
+        <tr>
+            <th scope="col">CI</th>
+            <th scope="col">Nombre de usuario</th>
+            <th scope="col">Email</th>
+            <th scope="col">Último inicio de sesión</th>
+            <th scope="col">Staff</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for user in users %}
+            <tr>
+            <th scope="row">1</th>
+            <td>{{ user.ci }}</td>
+            <td>{{ user.username }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.last_login }}</td>
+            <td>
+                <a href="#" class="edit-btn"><i class="bi bi-pencil-square"></i></a>
+                <a href="#" class="delete-btn"><i class="bi bi-trash3-fill bg-danger"></i></a>
+            </td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="5">No hay usuarios registrados.</td></tr>
+        {% endfor %}
+    </tbody>
+    </table>
+    {% endblock %}
+{% endblock %}
